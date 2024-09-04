@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,9 +28,11 @@ class MainActivity : ComponentActivity() {
             HappyBirthdayTheme {
                GreetingText(message = "Happy Birthday Lydie!",
                             from = "From Némo",
-                            modifier = Modifier.padding(8.dp)
-                                                .fillMaxSize()
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxSize()
                )
+
             }
         }
     }
@@ -59,10 +63,22 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
 }
 
 
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier)
+{
+    val image = painterResource(id = R.drawable.cayenne)
+    Image(
+        painter = image,
+        contentDescription = "Photo de Queen Cayenne, une chatte grise très mignonne avec le" +
+                "ventre blanc. Elle est en train de faire sa toilette sur le canapé rouge."
+    )
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview() {
     HappyBirthdayTheme {
-        GreetingText(message = "Happy Birthday Lydie!", from = "From Némo")
+        GreetingImage(message = "Happy Birthday Lydie!", from = "From Némo")
     }
 }
