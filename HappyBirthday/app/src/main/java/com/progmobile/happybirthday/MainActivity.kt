@@ -14,9 +14,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Cyan
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,6 +51,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
+    val gradientColors = listOf(Color.Black, Color.Red)
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,12 +60,18 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
         Text(
             text = message,
             fontSize = 50.sp,
+            style = TextStyle(
+                brush = Brush.linearGradient(
+                    colors = gradientColors
+                ),
+                shadow = Shadow(Color.Black, Offset(3.0f, 5.0f), 5F)
+            ),
             lineHeight = 60.sp,
             textAlign = TextAlign.Center
         )
         Text(
             text = from,
-            fontSize = 14.sp,
+            fontSize = 34.sp,
             modifier = Modifier
                 .padding(16.dp)
                 .align(alignment = Alignment.CenterHorizontally)
@@ -74,7 +88,7 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier)
         Image(
             painter = image,
             contentDescription = "Photo de Queen Cayenne, une chatte grise très mignonne avec le" +
-                    "ventre blanc. Elle est en train de faire sa toilette sur le canapé rouge.",
+                    stringResource(R.string.cayenne_img_description),
             contentScale = ContentScale.Crop,
             alpha = 0.7F       )
         GreetingText(message = "Happy Birthday Lydie!",
