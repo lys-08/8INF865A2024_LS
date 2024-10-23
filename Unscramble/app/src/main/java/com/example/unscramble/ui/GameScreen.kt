@@ -156,17 +156,12 @@ fun GameLayout(
             modifier = Modifier.padding(mediumPadding)
         ) {
             Text(
-                text = currentScrambledWord,
-                fontSize = 45.sp,
-                modifier = modifier.align(Alignment.CenterHorizontally)
-            )
-            Text(
                 modifier = Modifier
                     .clip(shapes.medium)
                     .background(colorScheme.surfaceTint)
                     .padding(horizontal = 10.dp, vertical = 4.dp)
                     .align(alignment = Alignment.End),
-                text = stringResource(R.string.word_count, 0),
+                text = currentScrambledWord,
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
             )
